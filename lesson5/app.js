@@ -15,8 +15,8 @@ function circle(x,y,r){
 	ctx.beginPath();
 	ctx.arc(x,y,r,0,6.28);
 	ctx.closePath();
-	ctx.strokeStyle = "navy";
-	ctx.stroke();
+	// ctx.strokeStyle = "navy";
+	// ctx.stroke();
 	// ctx.fillStyle = "cyan";
 	// ctx.fill();
 }
