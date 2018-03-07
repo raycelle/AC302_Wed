@@ -100,7 +100,54 @@ function update(){
 		player.body.velocity.y = -300;
 	}
 
+	//lesson 9
+	game.physics.arcade.overlap(player, stars, collectStar);
+	game.physics.arcade.overlap(player, enemy1, loseLife);
+
+	//call function move Enemy
+	moveEnemy();
+
+	//check if game over
+	if(lives <= 0){
+		endGame();
+	}
+
 }
+
+function endGame(){
+	player.kill();
+	scorelabel.text = "GAME OVER! You scored " + score;
+	scoretext.visible = false;
+	lifelabel.visible = false;
+	lifetext.visible = false;
+}
+
+function moveEnemy(){
+	if(enemy1.x > 759){
+		enemy1.animations.play('left');
+		enemy1.body.velocity.x = -120;
+	} else if(enemy1.x < 405){
+		enemy1.animations.play('right');
+		enemy1.body.velocity.x = 120;
+	}
+}
+
+function loseLife(player, enemy){
+	lives -= 1; // same as lives = lives - 1
+	lifetext.setText(lives);
+
+	enemy.kill();
+	enemy.reset(10, 20);
+}
+
+function collectStar(player,star){
+	score += 1;
+	scoretext.setText(score);
+
+	star.kill();
+	star.reset(Math.random()* 750, 0 )
+}
+
 
 
 
